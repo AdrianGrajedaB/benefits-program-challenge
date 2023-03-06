@@ -1,6 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ *  PaymentDetails
+ *  1.0
+ *  3/6/2023 16:00
+ *  Copyright (c) 2023 Unosquare
+ *  Any illegal reproduction of this content will result in immediate legal action.
  */
 package coe.unosquare.benefits.payments;
 
@@ -8,23 +11,38 @@ import coe.unosquare.benefits.creditcards.CreditCard;
 import java.time.LocalDate;
 
 /**
- *
+ * Hold the important information of {@link Order}'s payment.
  * @author adrian.grajeda
  */
 public class PaymentDetails {
     
+    /** the Date of the payment. */
     private final LocalDate date;
+    /** the type of the payment. */
     private final PaymentType type;
+    /**  the credit card used in the payment. */
     private CreditCard creditCard;
+    /** the total amount of the order. */
     private Double totalAmount;
+    /** the discount's percentage, if any. */
     private Double discount;
+    /** the final amount to pay, after any discount. */
     private Double finalAmount;
 
+    /**
+     * Creates a new instance of this class..
+     * @param type the type of the payment
+     */
     public PaymentDetails(PaymentType type) {
         this.date = LocalDate.now();
         this.type = type;
     }
 
+    /**
+     * Creates a new instance of this class..
+     * @param type the type of the payment
+     * @param creditCard the credit card
+     */
     public PaymentDetails(PaymentType type, CreditCard creditCard) {
         this(type);
         this.creditCard = creditCard;
