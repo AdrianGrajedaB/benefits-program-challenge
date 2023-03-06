@@ -1,11 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ *  CreditCardType
+ *  1.0
+ *  3/6/2023 16:00
+ *  Copyright (c) 2023 Unosquare
+ *  Any illegal reproduction of this content will result in immediate legal action.
  */
 package coe.unosquare.benefits.creditcards;
 
 /**
- *
+ * The supported credit cards types.
  * @author adrian.grajeda
  */
 public enum CreditCardType {

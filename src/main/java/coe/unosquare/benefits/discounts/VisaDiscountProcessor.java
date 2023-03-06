@@ -1,12 +1,18 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ *  VisaDiscountProcessor
+ *  1.0
+ *  3/6/2023 16:00
+ *  Copyright (c) 2023 Unosquare
+ *  Any illegal reproduction of this content will result in immediate legal action.
  */
 package coe.unosquare.benefits.discounts;
 
 import coe.unosquare.benefits.order.Order;
 
 /**
+ * /**
+ * Calculate the specific discount percentage for
+ * {@link CreditCardType#VISA_CARD}.
  *
  * @author adrian.grajeda
  */
@@ -18,6 +24,12 @@ public class VisaDiscountProcessor implements DiscountProcessor {
     private static final int SEVEN_PRODUCTS = 7;
     private static final int TEN_PRODUCTS = 10;
 
+    /**
+     * {@inheritDoc }.
+     *
+     * @param order the order
+     * @return the discount percentage
+     */
     @Override
     public Double calculateDiscount(Order order) {
         final var products = order.getProducts();
