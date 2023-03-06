@@ -8,10 +8,13 @@
 
 package coe.unosquare.benefits.util;
 
+import coe.unosquare.benefits.creditcards.CreditCard;
+import coe.unosquare.benefits.creditcards.CreditCardParser;
 import coe.unosquare.benefits.order.Order;
+import coe.unosquare.benefits.payments.PaymentDetails;
+import coe.unosquare.benefits.payments.PaymentService;
+import coe.unosquare.benefits.payments.PaymentServiceFactory;
 import coe.unosquare.benefits.product.Product;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Map;
 
 /**
@@ -32,14 +35,18 @@ public final class PayOrderSimulator {
      */
     public static Double payOrder(final Map<Product, Integer> products,
                                   final String paymentType) {
-        Order order = new Order(products);
-        Double subtotal = products.entrySet()
-                            .stream()
-                            .mapToDouble(product -> product.getKey().getPrice() * product.getValue())
-                            .sum();
-        return new BigDecimal((subtotal - order.pay(paymentType)) / subtotal)
-                .setScale(2, RoundingMode.HALF_EVEN)
-                .doubleValue();
+        final Order order = new Order(products);
+        final CreditCard creditCard = CreditCardParser.parseFromString(paymentType);
+        final PaymentService paymentService = PaymentServiceFactory.createPaymentService(creditCard);
+        final PaymentDetails paymentDetails = paymentService.processPayment(order, creditCard);
+        return paymentDetails.getDiscount();
+//        Double subtotal = products.entrySet()
+//                            .stream()
+//                            .mapToDouble(product -> product.getKey().getPrice() * product.getValue())
+//                            .sum();
+//        return new BigDecimal((subtotal - order.pay(paymentType)) / subtotal)
+//                .setScale(2, RoundingMode.HALF_EVEN)
+//                .doubleValue();
     }
 }
 

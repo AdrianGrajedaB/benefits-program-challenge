@@ -39,4 +39,10 @@ class OrderTest {
         Map<Product, Integer> products = ProductGenerator.generateProducts(5);
         assertEquals(0.05, payOrder(products, "Visa"));
     }
+    
+    @Test
+    void orderWithOtherCardNoDiscountTest() {
+        Map<Product, Integer> products = ProductGenerator.generateProducts(15);
+        assertEquals(0.0, payOrder(products, "Other"));
+    }
 }

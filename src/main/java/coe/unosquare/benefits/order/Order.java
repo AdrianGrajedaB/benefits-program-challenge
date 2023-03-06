@@ -81,4 +81,10 @@ public class Order {
                          + "},Quantity:" + quantity
                          + ",Total:" + product.getPrice() * quantity));
     }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+    
+    
 }
