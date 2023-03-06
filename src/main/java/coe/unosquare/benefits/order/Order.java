@@ -32,7 +32,9 @@ public class Order {
      *
      * @param paymentType the payment type
      * @return the double
+     * @deprecated please refer to PayOrderManager
      */
+    @Deprecated
     public Double pay(final String paymentType) {
         Double discount;
         if (paymentType.equals("Visa")) {
