@@ -34,14 +34,13 @@ public class VisaDiscountProcessor implements DiscountProcessor {
     public Double calculateDiscount(Order order) {
         final var products = order.getProducts();
         Double discount;
+        final Integer totalProductsCount = products.values()
+                .stream()
+                .reduce(0, (totalProductCount, quantity) -> totalProductCount += quantity);
 
-        if (products.values()
-                .stream()
-                .reduce(0, (totalProductCount, quantity) -> totalProductCount += quantity) >= TEN_PRODUCTS) {
+        if (totalProductsCount >= TEN_PRODUCTS) {
             discount = FIFTEEN_DISCOUNT;
-        } else if (products.values()
-                .stream()
-                .reduce(0, (totalProductCount, quantity) -> totalProductCount += quantity) >= SEVEN_PRODUCTS) {
+        } else if (totalProductsCount >= SEVEN_PRODUCTS && totalProductsCount <= 9) {
             discount = TEN_DISCOUNT;
         } else {
             discount = FIVE_DISCOUNT;

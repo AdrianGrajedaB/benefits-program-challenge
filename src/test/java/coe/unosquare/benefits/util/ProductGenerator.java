@@ -59,13 +59,23 @@ public final class ProductGenerator {
             double price = Double.parseDouble(new DecimalFormat("0.00")
                                                 .format(new Random().nextDouble() * 10.00));
             int quantity = new Random().nextInt(5) + 1;
-            products.put(new Product("Product " + id, //product name
-                            price,
-                            new Random().nextInt(3) + 1), //type
+            if ((total + (price * quantity)) > expectedTotal) {
+                 price = (expectedTotal - total ) / quantity;
+            }
+            
+            final Product product = new Product("Product " + id, //product name
+                    price,
+                    new Random().nextInt(3) + 1);
+            
+            products.put(product, //type
                     quantity); //quantity
             total = total + price * quantity;
+            
+            //check not to overpass tje limit
+            
             id++;
         }
+        
         return products;
     }
 }

@@ -28,14 +28,13 @@ public class MasterCardDiscountProcessor implements DiscountProcessor {
     public Double calculateDiscount(Order order) {
         final var products = order.getProducts();
         Double discount;
-        if (products.entrySet()
+        final double totalAmount = products.entrySet()
                 .stream()
                 .mapToDouble(product -> product.getKey().getPrice() * product.getValue())
-                .sum() >= 100) {
+                .sum();
+        if (totalAmount >= 100) {
             discount = SEVENTEEN_DISCOUNT;
-        } else if (products.entrySet().stream()
-                .mapToDouble(product -> product.getKey().getPrice() * product.getValue())
-                .sum() >= 75) {
+        } else if (totalAmount >= 75 && totalAmount <= 99) {
             discount = TWELVE_DISCOUNT;
         } else {
             discount = EIGHT_DISCOUNT;
